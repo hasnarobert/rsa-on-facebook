@@ -10,6 +10,18 @@
 	},
 	"permissions": [
 		"activeTab",
-		"https://ajax.googleapis.com/"
+		"https://ajax.googleapis.com/",
+		"https://facebook.com/*"
+	],
+	"content_scripts": [
+		{
+			"js": [
+				"facebook-message-interceptor.js"
+			],
+			"matches": [
+				"*://www.facebook.com/*"
+			],
+			"run_at": "document_start"
+		}
 	]
 }
