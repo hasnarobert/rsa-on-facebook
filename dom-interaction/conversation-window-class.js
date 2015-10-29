@@ -22,15 +22,15 @@ ConversationWindow.prototype.CONVERSATION_WINDOW_CLASS = ".opened";
 
 /**
  * Name of the css class which contains the contact name of a conversation.
- * @type {string}
+ * @const {string}
  */
 ConversationWindow.prototype.CONTACT_NAME_CONTAINER_CLASS = ".titlebarText";
 
 /**
  * Name of the css class used to identity message elements.
- * @type {string}
+ * @const {string}
  */
-ConversationWindow.prototype.MESSAGE_CONTAINER_CLASS = "._5yl5";
+ConversationWindow.prototype.MESSAGE_CONTAINER_CLASS = "._5wd4";
 
 /**
  * Gets the message text.

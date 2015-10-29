@@ -26,7 +26,13 @@ function newMessagesInConversationDetected() {
         for (var j = 0; j < messages.length; ++j) {
             var message = messages[j];
             if (!message.isUpdated()) {
-                message.updateText(contactName);
+                var new_message_text;
+                if (message.isFromContact()) {
+                    new_message_text = contactName;
+                } else {
+                    new_message_text = "myself";
+                }
+                message.updateText(new_message_text);
             }
         }
     }

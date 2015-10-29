@@ -6,11 +6,14 @@
  * @public
  * @type {Object}
  * @constructor
- * @property {Node} element
- * @param {Node} element
+ * @property {Node} innerElement
+ * @property {Node} outerElement
+ * @param {Node} outerElement
  */
-var Message = function (element) {
-    this.element = element;
+var Message = function (outerElement) {
+    this.outerElement = outerElement;
+    this.innerElement = outerElement.querySelectorAll(Message.prototype.INNER_MESSAGE_CONTAINER_CLASS)[0];
+    this.isMessageFromContact = outerElement.classList.contains(Message.prototype.MESSAGE_IS_FROM_CONTACT_CLASS);
 };
 
 /**
@@ -20,12 +23,24 @@ var Message = function (element) {
 Message.prototype.MESSAGE_UPDATED_MARKER_ATTRIBUTE_NAME = "rsa-on-facebook-message-updated";
 
 /**
+ * Name of the css class used to identity message inner elements.
+ * @const {string}
+ */
+Message.prototype.INNER_MESSAGE_CONTAINER_CLASS = "._5yl5";
+
+/**
+ * Name of the css class used to identity is the message was sent from contact.
+ * @const {string}
+ */
+Message.prototype.MESSAGE_IS_FROM_CONTACT_CLASS = "_1nc7";
+
+/**
  * Gets the message text.
  *
  * @return {string}
  */
 Message.prototype.getText = function () {
-    return this.element.children[0].innerHTML;
+    return this.innerElement.children[0].innerHTML;
 };
 
 /**
@@ -35,8 +50,17 @@ Message.prototype.getText = function () {
  * @return {undefined}
  */
 Message.prototype.updateText = function (message) {
-    this.element.children[0].innerHTML = message;
-    this.element.setAttribute(Message.prototype.MESSAGE_UPDATED_MARKER_ATTRIBUTE_NAME, true);
+    this.innerElement.children[0].innerHTML = message;
+    this.innerElement.setAttribute(Message.prototype.MESSAGE_UPDATED_MARKER_ATTRIBUTE_NAME, true);
+};
+
+/**
+ * Checks if message is received from contact or I sent it.
+ *
+ * @return {Boolean} True if message is from contact in conversation or false if message is sent by me.
+ */
+Message.prototype.isFromContact = function() {
+    return this.isMessageFromContact;
 };
 
 /**
@@ -45,5 +69,5 @@ Message.prototype.updateText = function (message) {
  * @return {Boolean} true if the container had its message updated, or false otherwise.
  */
 Message.prototype.isUpdated = function () {
-    return this.element.hasAttribute(Message.prototype.MESSAGE_UPDATED_MARKER_ATTRIBUTE_NAME);
+    return this.innerElement.hasAttribute(Message.prototype.MESSAGE_UPDATED_MARKER_ATTRIBUTE_NAME);
 };
