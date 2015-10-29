@@ -5,7 +5,7 @@
     "version": "1.0",
     "browser_action": {
         "default_icon": "icon.png",
-        "default_popup": "default-popup.html",
+        "default_popup": "default-popup/default-popup.html",
         "default_title": "Select RSA keys"
     },
     "permissions": [
@@ -17,8 +17,10 @@
     "content_scripts": [
         {
             "js": [
-                "facebook-message-send-interceptor.js",
-                "facebook-message-receive-interceptor.js"
+                "dom-interaction/message-class.js",
+                "dom-interaction/conversation-window-class.js",
+                "interceptors/facebook-message-send-interceptor.js",
+                "interceptors/facebook-message-receive-interceptor.js"
             ],
             "matches": [
                 "*://www.facebook.com/*",
