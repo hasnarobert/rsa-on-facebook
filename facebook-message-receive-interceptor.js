@@ -1,9 +1,51 @@
 var MESSAGE_CONTAINER_CLASS = "_5yl5";
-var CONVERSATION_WINDOW_CLASS = "conversation";
-var MESSAGE_UPDATED_MARKER_ATTRIBUTE_NAME = "rsa-on-facebook-message-updated";
+var CONVERSATION_WINDOW_CLASS = "opened"; //"conversation";
 var OPEN_CONVERSATION_WINDOWS = [];
 var REFRESH_OPEN_CONVERSATION_WINDOWS_TIMER = undefined;
 var REFRESH_OPEN_CONVERSATION_WINDOW_DELAY_IN_MILLIS = 100;
+var MESSAGE_UPDATED_MARKER_ATTRIBUTE_NAME = "rsa-on-facebook-message-updated";
+
+/**
+ *
+ * @param element
+ * @constructor
+ */
+var MessageContainer = function(element) {
+    this.element = element;
+};
+
+MessageContainer.prototype.MESSAGE_UPDATED_MARKER_ATTRIBUTE_NAME = "rsa-on-facebook-message-updated";
+
+MessageContainer.prototype.getMessage = function() {
+    return this.element.children[0].innerHTML;
+};
+
+MessageContainer.prototype.updateMessage = function(message) {
+    this.element.children[0].innerHTML = message;
+    this.element.setAttribute(MessageContainer.prototype.MESSAGE_UPDATED_MARKER_ATTRIBUTE_NAME, true);
+};
+
+MessageContainer.prototype.isMessageUpdated = function() {
+    return this.element.hasAttribute(MessageContainer.prototype.MESSAGE_UPDATED_MARKER_ATTRIBUTE_NAME);
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 var OBSERVER = new MutationObserver(newMessagesInConversationDetected);
 //function (mutations) {
@@ -31,10 +73,11 @@ function findOpenConversations() {
 /**
  * Finds all messages in an open conversation window.
  *
+ * @param {Node} conversation
  * @return NodeList array containing all message 'div's inside the conversation window.
  */
-function findMessagesInAllConversations() {
-    return document.querySelectorAll("." + MESSAGE_CONTAINER_CLASS);
+function findMessagesInConversation(conversation) {
+    return conversation.querySelectorAll("." + MESSAGE_CONTAINER_CLASS);
 }
 
 ///**
@@ -69,13 +112,32 @@ function hasMessageUpdated(message_container) {
     return message_container.hasAttribute(MESSAGE_UPDATED_MARKER_ATTRIBUTE_NAME);
 }
 
+/**
+ *
+ * @param {Node} conversation
+ * @return {String} Facebook contact id for conversation
+ */
+function extractContactIdFromConversation(conversation) {
+    var name = conversation.querySelectorAll(".titlebarText")[0].children[0].children[0].innerHTML;
+    console.log("Found new open conversation with: " + name);
+    return name;
+}
+
 function newMessagesInConversationDetected() {
     console.log("New messages must be there");
-    var message_containers = findMessagesInAllConversations();
-    for (var i = 0; i < message_containers.length; ++i) {
-        var message_container = message_containers[i];
-        if (!hasMessageUpdated(message_container)) {
-            updateMessageText(message_containers[i], "changed");
+    var conversations = findOpenConversations();
+    for (var i = 0; i < conversations.length; ++i) {
+        var conversation = conversations[i];
+
+        // Detect contact id
+        var contactName = extractContactIdFromConversation(conversation);
+
+        var message_containers = findMessagesInConversation(conversation);
+        for (var j = 0; j < message_containers.length; ++j) {
+            var message_container = message_containers[j];
+            if (!hasMessageUpdated(message_container)) {
+                updateMessageText(message_containers[j], "changed");
+            }
         }
     }
 }
