@@ -2,19 +2,134 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>rsa-on-facebook popup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <title>rsa-on-facebook</title>
+
+    <link rel="stylesheet" href="../lib/bootstrap-3.3.5/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="../lib/bootstrap-3.3.5/css/bootstrap-theme.min.css" crossorigin="anonymous">
+    <script src="../lib/jquery-1.11.3/jquery-1.11.3.min.js" crossorigin="anonymous"></script>
+    <script src="../lib/bootstrap-3.3.5/js/bootstrap.min.js" crossorigin="anonymous"></script>
     <style type="text/css">
 
         body {
-            height: 400px;
-            width: 400px;
+            height: 600px;
+            width: 800px;
+            padding-left: 20px;
         }
+
+        h4 {
+            margin-top: 25px;
+        }
+
+        .row {
+            margin-bottom: 20px;
+        }
+
+        .row .row {
+            margin-top: 10px;
+            margin-bottom: 0;
+        }
+
+        [class*="col-"] {
+            padding-top: 15px;
+            padding-bottom: 15px;
+            background-color: #eee;
+            background-color: rgba(86, 61, 124, .15);
+            border: 1px solid #ddd;
+            border: 1px solid rgba(86, 61, 124, .2);
+        }
+
+        hr {
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+
     </style>
 </head>
 
+
 <body>
-<script src="default-popup.js" type="application/javascript"></script>
-<label for="input">Input</label><input type="file" id="input">
+<div class="container">
+    <div class="page-header">
+        <h3>My private key</h3>
+    </div>
+
+    <form class="form-inline">
+        <textarea class="form-control" rows="2" style="width: 625px; max-width: 625px; margin-right: 15px" placeholder="Private key"></textarea>
+        <button type="submit" class="btn btn-danger btn-lg">Save</button>
+    </form>
+
+    <div class="page-header">
+        <h3>Public keys</h3>
+    </div>
+
+    <form class="form-inline">
+        <div class="form-group">
+            <label class="sr-only" for="exampleInputEmail3">Email address</label>
+            <input type="text" class="form-control" id="exampleInputEmail3" placeholder="Contact Name">
+        </div>
+        <div class="form-group">
+            <label class="sr-only" for="exampleInputPassword3">Password</label>
+            <input type="text" class="form-control" id="exampleInputPassword3" placeholder="Public key" style="width: 460px; margin-right: 15px">
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <p></p>
+
+        <div class="form-group">
+            <label class="sr-only" for="exampleInputEmail4">Email address</label>
+            <input type="text" class="form-control" id="exampleInputEmail4" placeholder="Contact Name">
+        </div>
+        <div class="form-group">
+            <label class="sr-only" for="exampleInputPassword4">Password</label>
+            <input type="text" class="form-control" id="exampleInputPassword4" placeholder="Public key" style="width: 460px; margin-right: 15px">
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <p></p>
+
+        <div class="form-group">
+            <label class="sr-only" for="exampleInputEmail5">Email address</label>
+            <input type="text" class="form-control" id="exampleInputEmail5" placeholder="Contact Name">
+        </div>
+        <div class="form-group">
+            <label class="sr-only" for="exampleInputPassword5">Password</label>
+            <input type="text" class="form-control" id="exampleInputPassword5" placeholder="Public key" style="width: 460px; margin-right: 15px">
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <p></p>
+
+        <div class="form-group">
+            <label class="sr-only" for="exampleInputEmail6">Email address</label>
+            <input type="text" class="form-control" id="exampleInputEmail6" placeholder="Contact Name">
+        </div>
+        <div class="form-group">
+            <label class="sr-only" for="exampleInputPassword6">Password</label>
+            <input type="text" class="form-control" id="exampleInputPassword6" placeholder="Public key" style="width: 460px; margin-right: 15px">
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <p></p>
+
+        <div class="form-group">
+            <label class="sr-only" for="exampleInputEmail7">Email address</label>
+            <input type="text" class="form-control" id="exampleInputEmail7" placeholder="Contact Name">
+        </div>
+        <div class="form-group">
+            <label class="sr-only" for="exampleInputPassword7">Password</label>
+            <input type="text" class="form-control" id="exampleInputPassword7" placeholder="Public key" style="width: 460px; margin-right: 15px">
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <p></p>
+
+        <div class="form-group">
+            <label class="sr-only" for="exampleInputEmail8">Email address</label>
+            <input type="text" class="form-control" id="exampleInputEmail8" placeholder="Contact Name">
+        </div>
+        <div class="form-group">
+            <label class="sr-only" for="exampleInputPassword8">Password</label>
+            <input type="text" class="form-control" id="exampleInputPassword8" placeholder="Public key" style="width: 460px; margin-right: 15px">
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>
 </body>
 </html>

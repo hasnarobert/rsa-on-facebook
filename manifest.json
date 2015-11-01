@@ -8,6 +8,11 @@
         "default_popup": "default-popup/default-popup.html",
         "default_title": "Select RSA keys"
     },
+    "icons": {
+        "16":"icon.png",
+        "48":"icon.png",
+        "128":"icon.png"
+    },
     "permissions": [
         "activeTab",
         "https://ajax.googleapis.com/",
